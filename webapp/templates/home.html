@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+ <div class="event-div" id="events">
+        <h2>Upcoming Events</h2>
+        <div class="all-events">
+            {% for event in events %}
+                <div id='{{ event.id }}' class="event-card"> 
+                    <p id='{{ event.id }}' class="title">
+                        <a href="#">{{ event.event }}</a>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content%}
