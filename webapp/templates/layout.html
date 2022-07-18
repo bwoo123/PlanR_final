@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/assets/fontawesome/css/all.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='/CSS/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/CSS/styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
@@ -17,14 +16,41 @@
     <title>Planr</title>
 </head>
 <body>
-    <header>
-        <h1>Planr</h1>
-        <div>
-            <a href="#">New Event</a>
-            <a href="#">Account</a>
-            <a href="#">Logout</a>
+    <nav class="navbar nav-color">
+        {% if current_user.is_authenticated %}
+        <div id="logo-and-search">
+            <a href="{{ url_for('home') }}"><h1>PlanR</h1></a>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Find Friends" aria-label="Search">
+                <div>
+                    <a href='#' class="btn btn-outline-success my-2 my-sm-0">Search</a>
+                </div>
+            </form>
         </div>
-    </header>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url_for('account') }}">Profile</a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-primary" href="{{ url_for('new_event') }}">New Event</a>
+              </li>
+          </ul>
+        {% else %}
+        <div id="logo-and-search">
+            <h1>PlanR</h1>
+        </div>
+        <ul class="nav justify-content-end spaced-links">
+        <li class="nav-item">
+                <a href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class='btn btn-primary' href="{{ url_for('register') }}">Sign Up</a>
+              </li>
+          </ul>
+        {% endif %}
+    </nav>
     {% block content %}{% endblock %}
 </body>
 </html>

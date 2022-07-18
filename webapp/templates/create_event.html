@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"> {{ legend }}</legend>
+<!-- EVENT TITLE  -->
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+<!-- EVENT TIME  -->
+            <div class="form-group">
+                {{ form.time.label(class="form-control-label") }}
+                {% if form.time.errors %}
+                    {{ form.time(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.time.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.time(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+<!-- EVENT DETAILS  -->
+            <div class="form-group">
+                {{ form.detail.label(class="form-control-label") }}
+                {% if form.detail.errors %}
+                    {{ form.detail(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.detail.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.detail(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+<!-- EVENT DATE  -->
+            <div class="form-group">
+                {{ form.date.label(class="form-control-label") }}
+                {% if form.date.errors %}
+                    {{ form.date(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.date.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.date(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+<!-- Event RSVPS   -->
+            <div class="form-group">
+                {{ form.rsvps.label(class="form-control-label") }}
+                {% if form.rsvps.errors %}
+                    {{ form.rsvps(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.rsvps.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.rsvps(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>            
+        </fieldset>
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content%}

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>{{ event.title }}</h1>
+<h1>{{ event.owner }}</h1>
+
+{% for person in event.rsvps %}
+    <div>{{ person.username }}</div>
+{% endfor %}
+{% endblock content %}
