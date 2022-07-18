@@ -14,6 +14,7 @@ def load_user(user_id):
 # )
 
 class RSVP(db.Model):
+    __tablename__ = "RSVP"
     event_rsvp_id = db.Column(db.ForeignKey("event.id"), primary_key=True)
     user_rsvp_id = db.Column(db.ForeignKey("user.id"), primary_key=True)
     
@@ -26,6 +27,7 @@ class RSVP(db.Model):
         return f"RSVP('{self.event_rsvp_id}', '{self.user_rsvp_id}', '{self.going}')"
 
 class User(db.Model, UserMixin):
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(20), unique = True, nullable=False)
     email = db.Column(db.String(120), unique = True, nullable=False)
@@ -39,6 +41,7 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 class Event(db.Model):
+    __tablename__ = "event"
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String, nullable=False)
     time = db.Column(db.String)
@@ -46,7 +49,7 @@ class Event(db.Model):
     owner=db.Column(db.Integer)
     date=db.Column(db.String)
 
-    rsvps = db.relationship('User', secondary=RSVP, backref='rsvp')
+    rsvps = db.relationship('User', secondary="RSVP", backref='rsvp')
 
     def __repr__(self):
         return f"Event('{self.title}', '{self.time}')"
